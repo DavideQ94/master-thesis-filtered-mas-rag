@@ -1,0 +1,11 @@
+join_id,left_table,left_column,right_table,right_column,join_type,cardinality,description,generated_at
+J01,mt_safe_user,user_id,mt_safe_assignment_course_progress,user_id,INNER,1:N,User fact to assignment progress (user dimension),2026-07-21T11:09:08.238224
+J02,mt_safe_user,user_id,mt_safe_certificate,userId,INNER,1:N,User fact to certificate events,2026-07-21T11:09:08.238224
+J03,mt_safe_user,user_id,mt_safe_exam_result,exam_userId,LEFT,1:N,User fact to exam results (not all users have exams),2026-07-21T11:09:08.238224
+J04,mt_safe_company,company_ID,mt_safe_assignment,company_ID1,INNER,1:N,Company to its assignments,2026-07-21T11:09:08.238224
+J05,mt_safe_company,company_ID,mt_safe_company_contracts,companyId,LEFT,1:N,Company to its contracts,2026-07-21T11:09:08.238224
+J06,mt_safe_company_type,type_id,mt_safe_company,subTypeId,INNER,1:N,Company type lookup to companies,2026-07-21T11:09:08.238224
+J07,mt_safe_course,course_id1,mt_safe_assignment_course_progress,course_id,INNER,1:N,Course dimension to assignment progress,2026-07-21T11:09:08.238224
+J08,mt_safe_course,course_id1,mt_safe_certificate,courseId,INNER,1:N,Course dimension to certificates,2026-07-21T11:09:08.238224
+J09,mt_safe_assignment,assignment_ID,mt_safe_assignment_course_progress,assignment_id1,INNER,1:N,Assignment dimension to progress records,2026-07-21T11:09:08.238224
+J10,mt_safe_certificate,assignmentId,mt_safe_assignment,assignment_ID,LEFT,N:1,Certificate to its assignment (for deadline compliance),2026-07-21T11:09:08.238224

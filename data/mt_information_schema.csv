@@ -1,0 +1,122 @@
+table_name,column_name,data_type,nullable,is_id_column,is_pseudonymized,is_join_key,possible_join_group,description
+mt_safe_user,year,integer(),true,false,false,false,null,Year from completedOn. Use for year-level filtering.
+mt_safe_user,u_id,string(),true,true,true,true,user,ALIAS of user_id (same value). Prefer user_id in queries.
+mt_safe_user,completedOn,timestamp(),true,false,false,false,null,ALIAS of completedOn_ts (same value). Prefer completedOn_ts.
+mt_safe_user,exam_userId,string(),true,true,true,true,user,ALIAS of user_id (same value). Prefer user_id in queries.
+mt_safe_user,courseId,string(),true,true,true,true,course,ALIAS of course_id (same value). Prefer course_id in queries.
+mt_safe_user,user_id,string(),true,true,true,true,user,PRIMARY user identifier. Use this for user-level queries and JOINs.
+mt_safe_user,exam_courseId,string(),true,true,true,true,course,ALIAS of course_id (same value). Prefer course_id in queries.
+mt_safe_user,ass_id,string(),true,true,true,true,assignment,ALIAS of assignment_id1 (same value). Prefer assignment_id1.
+mt_safe_user,course_id,string(),true,true,true,true,course,PRIMARY course identifier. Use for course-level queries and JOINs.
+mt_safe_user,id,string(),true,true,true,true,certificate,Certificate ID (CERT_xxx). NOT a user ID.
+mt_safe_user,exam_assignmentId,string(),true,true,true,true,assignment,ALIAS of assignment_id1 (same value). Prefer assignment_id1.
+mt_safe_user,assignment_id1,string(),true,true,true,true,assignment,PRIMARY assignment identifier. JOIN to mt_safe_assignment.assignment_ID.
+mt_safe_user,completedOn_ts,timestamp(),true,false,false,false,null,Certificate completion timestamp. Use for deadline comparisons.
+mt_safe_user,user_course_state,string(),true,false,false,false,null,User-course completion state.
+mt_safe_user,course_type,string(),true,false,false,false,null,Pflichtkurs (mandatory) or Wahlkurs (elective).
+mt_safe_user,certificate_type,string(),true,false,false,false,null,Pflichtzertifikat (mandatory) or Wahlzertifikat (elective).
+mt_safe_user,Nr_Certificates_for_the_same_year,long(),true,false,false,false,null,Count of certs by user in same year.
+mt_safe_user,is_certificate_a_duplicate,string(),true,false,false,false,null,Dedup flag: yes or no.
+mt_safe_user,rn,integer(),true,false,false,false,null,Dedup row number. rn=1 means unique certificate.
+mt_safe_user,examId,string(),true,true,true,true,exam,Exam identifier.
+mt_safe_user,totalQuestions,integer(),true,false,false,false,null,Total available exam questions.
+mt_safe_user,countOfExamQuestions,integer(),true,false,false,false,null,Count of exam questions.
+mt_safe_user,questionsPerPage,integer(),true,false,false,false,null,Questions shown per page in exam.
+mt_safe_user,resultPercentage,integer(),true,false,false,false,null,Exam result percentage (0-100).
+mt_safe_user,correctAnswers,integer(),true,false,false,false,null,Correct answers in exam.
+mt_safe_user,questionsCount,integer(),true,false,false,false,null,Total questions in exam.
+mt_safe_user,hasPassed,boolean(),true,false,false,false,null,Whether user passed the exam.
+mt_safe_user,exam_date,timestamp(),true,false,false,false,null,Timestamp when exam was taken.
+mt_safe_user,Nr_attempt_for_an_exam,long(),true,false,false,false,null,Number of exam attempts by user.
+mt_safe_user,rn_exam,integer(),true,false,false,false,null,Exam dedup row number.
+mt_safe_user,month,integer(),true,false,false,false,null,Month from completedOn. Use for month-level filtering.
+mt_safe_user,day,integer(),true,false,false,false,null,Day from completedOn.
+mt_safe_assignment,assignment_ID,string(),true,true,true,true,assignment,PRIMARY assignment identifier. JOIN to mt_safe_user.assignment_id1.
+mt_safe_assignment,company_ID1,string(),true,true,true,true,company,Company that owns this assignment. JOIN to mt_safe_company.company_ID.
+mt_safe_assignment,topic_assignment,string(),true,false,false,false,null,Topic/title of the assignment.
+mt_safe_assignment,deadline_assignment,timestamp(),true,false,false,false,null,Deadline timestamp. Compare with mt_safe_user.completedOn_ts for on-time check.
+mt_safe_assignment,interval_assignment,string(),true,false,false,false,null,Recurrence interval.
+mt_safe_assignment,status_assignment,string(),true,false,false,false,null,Assignment status.
+mt_safe_assignment,is_default_assignment,boolean(),true,false,false,false,null,Whether this is a default assignment.
+mt_safe_assignment,is_reoccurring_assignment,boolean(),true,false,false,false,null,Whether this assignment recurs.
+mt_safe_assignment,assignment_completed_at,timestamp(),true,false,false,false,null,When the assignment was marked complete.
+mt_safe_company,company_ID,string(),true,true,true,true,company,PRIMARY company identifier. JOIN to mt_safe_assignment.company_ID1.
+mt_safe_company,company_Name,string(),true,false,false,false,null,Company display name.
+mt_safe_company,federalState,string(),true,false,false,false,null,German federal state where company is located.
+mt_safe_company,source,string(),true,false,false,false,null,Lead source.
+mt_safe_company,reason,string(),true,false,false,false,null,Reason for status change.
+mt_safe_company,trial_starts_at,timestamp(),true,false,false,false,null,Trial period start date.
+mt_safe_company,trial_ends_at,timestamp(),true,false,false,false,null,Trial period end date.
+mt_safe_company,company_created_at,timestamp(),true,false,false,false,null,Company creation timestamp.
+mt_safe_company,company_Status,string(),true,false,false,false,null,Detailed company status.
+mt_safe_company,subTypeId,string(),true,true,true,true,company_type,Company type FK. JOIN to mt_safe_company_type.type_id.
+mt_safe_company,company_status_simple,string(),true,false,false,false,null,"Simplified status: ACTIVE, INACTIVE, or TRIAL."
+mt_safe_company,no_user,boolean(),true,false,false,false,null,Boolean flag (NOT a user count).
+mt_safe_company_type,type_id,string(),true,true,true,true,company_type,PRIMARY type identifier. JOIN from mt_safe_company.subTypeId.
+mt_safe_company_type,type_name,string(),true,false,false,false,null,"Company type name: Baercare, Care, or MVZ."
+mt_safe_course,course_id1,string(),true,true,true,true,course,PRIMARY course identifier. JOIN to mt_safe_user.course_id.
+mt_safe_course,course_name,string(),true,false,false,false,null,Course display name.
+mt_safe_course,course_duration_in_min,double(),true,false,false,false,null,Course duration in minutes.
+mt_safe_course,course_description,string(),true,false,false,false,null,Course description text.
+mt_safe_course,course_status,string(),true,false,false,false,null,Course publication status.
+mt_safe_course,course_rbp,integer(),true,false,false,false,null,Required by policy flag (mandatory indicator).
+mt_safe_course,course_cne_available,boolean(),true,false,false,false,null,CNE credits available flag.
+mt_safe_course,course_cme_available,boolean(),true,false,false,false,null,CME credits available flag.
+mt_safe_assignment_course_progress,user_course_state,string(),true,false,false,false,null,Completion state of user-course pair.
+mt_safe_assignment_course_progress,assignment_id1,string(),true,true,true,true,assignment,Assignment identifier. JOIN to mt_safe_assignment.assignment_ID.
+mt_safe_assignment_course_progress,course_id,string(),true,true,true,true,course,Course identifier. JOIN to mt_safe_course.course_id1.
+mt_safe_assignment_course_progress,user_id,string(),true,true,true,true,user,User identifier. JOIN to mt_safe_user.user_id.
+mt_safe_assignment_course_progress,course_type,string(),true,false,false,false,null,Pflichtkurs (mandatory) or Wahlkurs (elective).
+mt_safe_certificate,id,string(),true,true,true,true,certificate,Certificate ID (CERT_xxx). Primary identifier.
+mt_safe_certificate,courseId,string(),true,true,true,true,course,Course identifier. JOIN to mt_safe_user.course_id. NOTE: camelCase in this table.
+mt_safe_certificate,userId,string(),true,true,true,true,user,User identifier. JOIN to mt_safe_user.user_id. NOTE: camelCase in this table.
+mt_safe_certificate,assignmentId,string(),true,true,true,true,assignment,Assignment identifier. JOIN to mt_safe_assignment.assignment_ID.
+mt_safe_certificate,completedOn,timestamp(),true,false,false,false,null,Certificate completion timestamp.
+mt_safe_certificate,certificate_type,string(),true,false,false,false,null,Pflichtzertifikat (mandatory) or Wahlzertifikat (elective).
+mt_safe_company_contracts,id,string(),true,true,true,true,contract,Contract ID (primary key).
+mt_safe_company_contracts,userCancelledAt,timestamp(),true,false,false,false,null,When user cancelled the contract (NULL if active).
+mt_safe_company_contracts,startingTime,timestamp(),true,false,false,false,null,Contract start date.
+mt_safe_company_contracts,expiryTime,timestamp(),true,false,false,false,null,Contract expiry date.
+mt_safe_company_contracts,companyId,string(),true,true,true,true,company,Company identifier. JOIN to mt_safe_company.company_ID.
+mt_safe_company_contracts,status,string(),true,false,false,false,null,Contract status.
+mt_safe_company_contracts,hasFixedLicenseCount,boolean(),true,false,false,false,null,Whether license count is fixed.
+mt_safe_company_contracts,noOfLicenses,integer(),true,false,false,false,null,Number of licenses in contract.
+mt_safe_exam_result,exam_userId,string(),true,true,true,true,user,User identifier. JOIN to mt_safe_user.user_id.
+mt_safe_exam_result,examId,string(),true,true,true,true,exam,Exam identifier.
+mt_safe_exam_result,exam_assignmentId,string(),true,true,true,true,assignment,Assignment identifier. JOIN to mt_safe_assignment.assignment_ID.
+mt_safe_exam_result,resultPercentage,integer(),true,false,false,false,null,Exam result as percentage (0-100).
+mt_safe_exam_result,correctAnswers,integer(),true,false,false,false,null,Number of correct answers.
+mt_safe_exam_result,questionsCount,integer(),true,false,false,false,null,Total questions in exam.
+mt_safe_exam_result,hasPassed,boolean(),true,false,false,false,null,Whether user passed the exam.
+mt_safe_exam_result,exam_date,timestamp(),true,false,false,false,null,Timestamp when exam was taken.
+mt_safe_opportunity,opportunity_id,string(),true,true,true,true,opportunity,PRIMARY opportunity identifier.
+mt_safe_opportunity,opportunity_name,string(),true,false,false,false,null,Opportunity display name.
+mt_safe_opportunity,account_id,string(),true,true,true,true,account,Account/company identifier.
+mt_safe_opportunity,created_at,timestamp(),true,false,false,false,null,Opportunity creation timestamp.
+mt_safe_opportunity,close_date,date(),true,false,false,false,null,Expected or actual close date.
+mt_safe_opportunity,last_stage_change_at,timestamp(),true,false,false,false,null,Last stage change timestamp.
+mt_safe_opportunity,amount,"decimal(38,22)",true,false,false,false,null,Deal amount in EUR.
+mt_safe_opportunity,expected_revenue,"decimal(38,22)",true,false,false,false,null,Expected revenue from opportunity.
+mt_safe_opportunity,stage_name,string(),true,false,false,false,null,Sales pipeline stage.
+mt_safe_opportunity,probability,double(),true,false,false,false,null,Win probability (0-100).
+mt_safe_opportunity,forecast_category,string(),true,false,false,false,null,Forecast category code.
+mt_safe_opportunity,forecast_category_name,string(),true,false,false,false,null,Forecast category display name.
+mt_safe_opportunity,is_closed,boolean(),true,false,false,false,null,Whether deal is closed.
+mt_safe_opportunity,is_won,boolean(),true,false,false,false,null,Whether deal was won.
+mt_safe_opportunity,opportunity_type,string(),true,false,false,false,null,Type of opportunity.
+mt_safe_opportunity,lead_source,string(),true,false,false,false,null,Lead source channel.
+mt_safe_opportunity,platform,string(),true,false,false,false,null,Platform type.
+mt_safe_opportunity,vertical,string(),true,false,false,false,null,Industry vertical.
+mt_safe_opportunity,is_renewal,boolean(),true,false,false,false,null,Whether this is a renewal opportunity.
+mt_safe_opportunity,fiscal_year,integer(),true,false,false,false,null,Fiscal year of the opportunity.
+mt_safe_opportunity,fiscal_quarter,integer(),true,false,false,false,null,Fiscal quarter.
+mt_safe_opportunity,fiscal_period,string(),true,false,false,false,null,Fiscal period.
+mt_safe_opportunity,sales_cycle_days,double(),true,false,false,false,null,Sales cycle length in days.
+mt_safe_opportunity,user_count,double(),true,false,false,false,null,Number of users in deal.
+mt_safe_opportunity,deal_term_months,double(),true,false,false,false,null,Contract term in months.
+mt_safe_opportunity,push_count,integer(),true,false,false,false,null,Number of times close date was pushed.
+mt_safe_opportunity,loss_reason,string(),true,false,false,false,null,Reason for lost deal.
+mt_safe_opportunity,closed_lost_reason,string(),true,false,false,false,null,Detailed closed-lost reason.
+mt_safe_opportunity,billing_start_date,date(),true,false,false,false,null,Billing period start.
+mt_safe_opportunity,billing_end_date,date(),true,false,false,false,null,Billing period end.
+mt_safe_opportunity,renewal_end_date,date(),true,false,false,false,null,Renewal end date.

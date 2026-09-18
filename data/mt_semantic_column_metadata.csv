@@ -1,0 +1,48 @@
+table_name,column_name,business_name,description,synonyms,column_category,generated_at
+mt_safe_user,user_id,User ID,Pseudonymized user identifier. Primary key for user dimension. Consistent across all tables.,"learner_id, user",identifier,2026-07-21T11:09:08.238224
+mt_safe_user,course_id,Course ID,Pseudonymized course identifier from the certificate context.,course,identifier,2026-07-21T11:09:08.238224
+mt_safe_user,year,Completion Year,Year when the certificate was completed.,certificate_year,dimension,2026-07-21T11:09:08.238224
+mt_safe_user,user_course_state,Assignment State,"State of the user's course assignment (e.g., completed, in_progress, not_started).","progress_state, completion_state",dimension,2026-07-21T11:09:08.238224
+mt_safe_user,course_type,Course Type,Type of course: 'Pflichtkurs' (mandatory) or 'Wahlkurs' (elective). German terms.,mandatory_or_elective,dimension,2026-07-21T11:09:08.238224
+mt_safe_user,completedOn,Completion Date,Timestamp when the certificate was earned / course was completed.,"completion_date, finished_at",date,2026-07-21T11:09:08.238224
+mt_safe_user,certificate_type,Certificate Type,Type of certificate: 'Pflicht' (mandatory) or 'Wahl' (elective). Shorter form than course_type.,cert_type,dimension,2026-07-21T11:09:08.238224
+mt_safe_user,Nr_Certificates_for_the_same_year,Certificate Count per Year,Number of times this user earned the same course certificate in the same year. Used for duplicate detection.,null,measure,2026-07-21T11:09:08.238224
+mt_safe_user,is_certificate_a_duplicate,Is Duplicate Certificate,Flag indicating if this certificate is a duplicate (same user+course in same year). Values: Y/N or similar.,null,flag,2026-07-21T11:09:08.238224
+mt_safe_user,hasPassed,Exam Passed,Boolean: true if the user passed the exam attempt.,"passed, exam_result",flag,2026-07-21T11:09:08.238224
+mt_safe_user,resultPercentage,Exam Score,Exam result as a percentage (0-100).,"score, exam_percentage",measure,2026-07-21T11:09:08.238224
+mt_safe_user,Nr_attempt_for_an_exam,Exam Attempt Number,Number of attempts the user made for this exam.,"attempt_count, tries",measure,2026-07-21T11:09:08.238224
+mt_safe_company,company_ID,Company ID,Pseudonymized company identifier. Primary key.,"customer_id, client_id",identifier,2026-07-21T11:09:08.238224
+mt_safe_company,company_Name,Company Name,Pseudonymized company name (hashed for privacy).,customer_name,identifier,2026-07-21T11:09:08.238224
+mt_safe_company,company_Status,Company Status,Detailed company subscription status.,subscription_status,dimension,2026-07-21T11:09:08.238224
+mt_safe_company,company_status_simple,Company Status (Simple),"Simplified status: 'active', 'trial', 'inactive', etc. Use for active company filtering.",status_category,dimension,2026-07-21T11:09:08.238224
+mt_safe_company,federalState,Federal State,German federal state (Bundesland) where the company is located.,"state, region, bundesland",dimension,2026-07-21T11:09:08.238224
+mt_safe_company,no_user,No Users Flag,Boolean: true if the company has no registered users.,null,flag,2026-07-21T11:09:08.238224
+mt_safe_company,trial_starts_at,Trial Start Date,Date when the company's trial period started.,trial_start,date,2026-07-21T11:09:08.238224
+mt_safe_company,trial_ends_at,Trial End Date,Date when the company's trial period ended.,trial_end,date,2026-07-21T11:09:08.238224
+mt_safe_assignment_course_progress,user_course_state,Progress State,Current state of the user's course assignment progress.,"state, progress",dimension,2026-07-21T11:09:08.238224
+mt_safe_assignment_course_progress,course_type,Course Type,Type: Pflichtkurs (mandatory) or Wahlkurs (elective).,null,dimension,2026-07-21T11:09:08.238224
+mt_safe_course,course_name,Course Name,Display name/title of the course.,"title, course_title",dimension,2026-07-21T11:09:08.238224
+mt_safe_course,course_duration_in_min,Course Duration (min),Expected duration of the course in minutes.,"duration, length",measure,2026-07-21T11:09:08.238224
+mt_safe_course,course_status,Course Status,"Publication status of the course (e.g., published, archived).",status,dimension,2026-07-21T11:09:08.238224
+mt_safe_course,course_cme_available,CME Available,Boolean: whether the course offers Continuing Medical Education credits.,cme,flag,2026-07-21T11:09:08.238224
+mt_safe_course,course_cne_available,CNE Available,Boolean: whether the course offers Continuing Nursing Education credits.,cne,flag,2026-07-21T11:09:08.238224
+mt_safe_exam_result,resultPercentage,Exam Score,Percentage score of the exam attempt (0-100).,"score, percentage",measure,2026-07-21T11:09:08.238224
+mt_safe_exam_result,hasPassed,Exam Passed,Boolean: true if the user passed this exam attempt.,passed,flag,2026-07-21T11:09:08.238224
+mt_safe_exam_result,correctAnswers,Correct Answers,Number of questions answered correctly.,null,measure,2026-07-21T11:09:08.238224
+mt_safe_exam_result,questionsCount,Total Questions,Total number of questions in the exam.,total_questions,measure,2026-07-21T11:09:08.238224
+mt_safe_exam_result,exam_date,Exam Date,Timestamp when the exam was taken.,test_date,date,2026-07-21T11:09:08.238224
+mt_safe_assignment,topic_assignment,Assignment Topic,Topic or title of the assignment.,"topic, assignment_name",dimension,2026-07-21T11:09:08.238224
+mt_safe_assignment,deadline_assignment,Assignment Deadline,Deadline date by which the assignment must be completed. Used for on-time compliance calculation.,"deadline, due_date",date,2026-07-21T11:09:08.238224
+mt_safe_assignment,status_assignment,Assignment Status,Current status of the assignment.,status,dimension,2026-07-21T11:09:08.238224
+mt_safe_assignment,is_reoccurring_assignment,Is Recurring,Boolean: whether the assignment recurs periodically.,"recurring, repeating",flag,2026-07-21T11:09:08.238224
+mt_safe_opportunity,amount,Opportunity Amount,Monetary value of the sales opportunity in USD.,"deal_size, value, revenue",measure,2026-07-21T11:09:08.238224
+mt_safe_opportunity,stage_name,Sales Stage,Current stage of the opportunity in the sales pipeline.,"stage, pipeline_stage",dimension,2026-07-21T11:09:08.238224
+mt_safe_opportunity,is_won,Is Won,Boolean: true if the opportunity was closed-won.,"won, closed_won",flag,2026-07-21T11:09:08.238224
+mt_safe_opportunity,is_closed,Is Closed,Boolean: true if the opportunity is closed (won or lost).,closed,flag,2026-07-21T11:09:08.238224
+mt_safe_opportunity,close_date,Close Date,Date the opportunity was (or is expected to be) closed.,"closed_date, expected_close",date,2026-07-21T11:09:08.238224
+mt_safe_opportunity,platform,Platform,Product platform associated with the opportunity.,null,dimension,2026-07-21T11:09:08.238224
+mt_safe_opportunity,vertical,Vertical,"Industry vertical of the opportunity (e.g., healthcare, nursing).","industry, segment",dimension,2026-07-21T11:09:08.238224
+mt_safe_company_contracts,noOfLicenses,Number of Licenses,Number of user licenses in the contract.,"license_count, seats",measure,2026-07-21T11:09:08.238224
+mt_safe_company_contracts,status,Contract Status,Current status of the contract.,contract_status,dimension,2026-07-21T11:09:08.238224
+mt_safe_company_contracts,startingTime,Contract Start,Contract start date.,start_date,date,2026-07-21T11:09:08.238224
+mt_safe_company_contracts,expiryTime,Contract Expiry,Contract expiry/end date.,"end_date, expiry_date",date,2026-07-21T11:09:08.238224
