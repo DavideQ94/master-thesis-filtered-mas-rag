@@ -2,10 +2,13 @@
 
 **Master Thesis** — Comparative evaluation of LLM-based agent architectures for answering natural-language questions over a relational healthcare database.
 
-Main entry point: notebooks/00_MAIN
-00_MAIN is the central experiment orchestrator. It executes the complete thesis experiment across 3 repetitions × 4 architectures × 25 evaluation questions, resulting in 300 runs. The architecture notebooks are called and coordinated from this notebook and normally do not need to be executed independently.
+%md
+> **📌 Main entry point: `notebooks/00_MAIN`**  
+> `00_MAIN` is the central experiment orchestrator. It executes the complete thesis experiment across **3 repetitions × 4 architectures × 25 evaluation questions**, resulting in **300 runs**. The architecture notebooks are called and coordinated from this notebook and normally do not need to be executed independently.
 
-Note: Scroll to the end of each architecture notebook to see the final evaluation results. Intermediate errors displayed during execution — such as failed SQL queries or retry attempts — are expected behavior and part of the agent's self-correction mechanism.
+> **⚠️ Note:** Scroll to the end of each architecture notebook to see the final evaluation results. Intermediate errors displayed during execution — such as failed SQL queries or retry attempts — are expected behavior and part of the agent's self-correction mechanism.
+
+
 ## Overview
 
 This repository contains the implementation, evaluation framework, data, and results used to compare four LLM-based architectures for analytical question answering. All architectures operate on the same 10 pseudonymised relational tables through Databricks SQL and are evaluated under the same experimental setup.
